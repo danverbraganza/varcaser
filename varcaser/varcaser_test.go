@@ -32,9 +32,53 @@ func TestCamelSplitMixedUp(t *testing.T) {
 }
 
 func TestCaserSimple(t *testing.T) {
-	c := Caser{From: lower_snake_case, To: UpperCamelCase}
+	c := Caser{From: LowerSnakeCase, To: UpperCamelCase}
 
 	specimen := c.String("my_int_var_20")
 	expected := "MyIntVar20"
+	AssertEqual(specimen, expected, t)
+}
+
+func TestCaserLeadingUnderscoreToCamel(t *testing.T) {
+	// This was a tricky case. I expected that _private_method would convert
+	// to _PrivateMethod, but to get that behaviour complicates the
+	// conversion functions (or priviliges _ as a conversion), and it seems
+	// that
+	// http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-135099.html#367
+	// doesn't approve of leading underscores in that case anyway.
+
+	// This could be supported, but for the nonce I'm going to assume YAGNI.
+
+	c := Caser{From: LowerSnakeCase, To: UpperCamelCase}
+
+	specimen := c.String("_private_method")
+	expected := "PrivateMethod"    // NOT "_PrivateMethod"
+	AssertEqual(specimen, expected, t)
+}
+
+func TestCaserLeadingUnderscoreToSnake(t *testing.T) {
+	c := Caser{From: LowerSnakeCase, To: ScreamingSnakeCase}
+
+	specimen := c.String("_private_method")
+	expected := "_PRIVATE_METHOD"
+	AssertEqual(specimen, expected, t)
+}
+
+
+func TestCaserCamelToKebab(t *testing.T) {
+	c := Caser{From: UpperCamelCase, To: KebabCase}
+
+	specimen := c.String("SomeInitMethod")
+	expected := "some-init-method"
+	AssertEqual(specimen, expected, t)
+}
+
+func TestCaserLowerCamelInitialCapital(t *testing.T) {
+	// This is another tricky case. I decided that the initial Capital does
+	// NOT indicate a hidden initial separator, but that might change.
+
+	c := Caser{From: LowerCamelCase, To: KebabCase}
+	specimen := c.String("SomeInitMethod")
+	expected := "some-init-method" // NOT "-some-init-method"
 	AssertEqual(specimen, expected, t)
 }

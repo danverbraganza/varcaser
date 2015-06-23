@@ -11,6 +11,7 @@ type CaseConvention struct {
 	JoinStyle
 	SubsequentCase func(string) string
 	InitialCase    func(string) string
+	Example string // Render the name of this case convention in itself
 }
 
 type JoinStyle struct {
@@ -29,6 +30,7 @@ func SimpleJoinStyle(sep string) JoinStyle {
 		},
 	}
 }
+
 
 var camelJoinStyle = JoinStyle{
 	Join: func(components []string) string {
