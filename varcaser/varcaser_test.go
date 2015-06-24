@@ -52,7 +52,7 @@ func TestCaserLeadingUnderscoreToCamel(t *testing.T) {
 	c := Caser{From: LowerSnakeCase, To: UpperCamelCase}
 
 	specimen := c.String("_private_method")
-	expected := "PrivateMethod"    // NOT "_PrivateMethod"
+	expected := "PrivateMethod" // NOT "_PrivateMethod"
 	AssertEqual(specimen, expected, t)
 }
 
@@ -63,7 +63,6 @@ func TestCaserLeadingUnderscoreToSnake(t *testing.T) {
 	expected := "_PRIVATE_METHOD"
 	AssertEqual(specimen, expected, t)
 }
-
 
 func TestCaserCamelToKebab(t *testing.T) {
 	c := Caser{From: UpperCamelCase, To: KebabCase}
@@ -89,8 +88,6 @@ func TestCaserSnakeToScreamingKebab(t *testing.T) {
 	AssertEqual(specimen, expected, t)
 }
 
-
-
 // AsyncHTTPRequest -> AsyncHttpRequest
 func TestCaserCamelToCamelLoseCapitals(t *testing.T) {
 	c := Caser{From: UpperCamelCase, To: UpperCamelCase}
@@ -108,8 +105,6 @@ func TestCaserCamelToCamelKeepCapitals(t *testing.T) {
 	expected := "AsyncHTTPRequest"
 	AssertEqual(specimen, expected, t)
 }
-
-
 
 func TestCaserLowerCamelInitialCapital(t *testing.T) {
 	// This is another tricky case. I decided that the initial Capital does
