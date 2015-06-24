@@ -73,6 +73,44 @@ func TestCaserCamelToKebab(t *testing.T) {
 	AssertEqual(specimen, expected, t)
 }
 
+func TestCaserSnakeToUpperKebab(t *testing.T) {
+	c := Caser{From: LowerSnakeCase, To: UpperKebabCase}
+
+	specimen := c.String("some_init_method")
+	expected := "Some-Init-Method"
+	AssertEqual(specimen, expected, t)
+}
+
+func TestCaserSnakeToScreamingKebab(t *testing.T) {
+	c := Caser{From: LowerSnakeCase, To: ScreamingKebabCase}
+
+	specimen := c.String("some_init_method")
+	expected := "SOME-INIT-METHOD"
+	AssertEqual(specimen, expected, t)
+}
+
+
+
+// AsyncHTTPRequest -> AsyncHttpRequest
+func TestCaserCamelToCamelLoseCapitals(t *testing.T) {
+	c := Caser{From: UpperCamelCase, To: UpperCamelCase}
+
+	specimen := c.String("AsyncHTTPRequest")
+	expected := "AsyncHttpRequest"
+	AssertEqual(specimen, expected, t)
+}
+
+// AsyncHTTPRequest -> AsyncHttpRequest
+func TestCaserCamelToCamelKeepCapitals(t *testing.T) {
+	c := Caser{From: UpperCamelCase, To: UpperCamelCaseKeepCaps}
+
+	specimen := c.String("AsyncHTTPRequest")
+	expected := "AsyncHTTPRequest"
+	AssertEqual(specimen, expected, t)
+}
+
+
+
 func TestCaserLowerCamelInitialCapital(t *testing.T) {
 	// This is another tricky case. I decided that the initial Capital does
 	// NOT indicate a hidden initial separator, but that might change.

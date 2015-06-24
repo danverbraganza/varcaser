@@ -1,6 +1,6 @@
 // Package varcaser provides a way to change the case of variable names.
 //
-// TODO(danver): Flesh out these comments.
+//
 package varcaser
 
 import "strings"
@@ -16,7 +16,7 @@ var ScreamingSnakeCase = CaseConvention{
 	JoinStyle:      SimpleJoinStyle("_"),
 	InitialCase:    strings.ToUpper,
 	SubsequentCase: strings.ToUpper,
-	Example: "LOWER_SNAKE_CASE",
+	Example: "SCREAMING_SNAKE_CASE",
 }
 
 var KebabCase = CaseConvention{
@@ -28,22 +28,51 @@ var KebabCase = CaseConvention{
 
 var UpperKebabCase = CaseConvention{
 	JoinStyle:      SimpleJoinStyle("-"),
-	InitialCase:    strings.ToUpper,
-	SubsequentCase: strings.ToUpper,
+	InitialCase:    ToStrictTitle,
+	SubsequentCase: ToStrictTitle,
 	Example: "Upper-Kebab-Case",
 }
+
+var ScreamingKebabCase = CaseConvention{
+	JoinStyle:      SimpleJoinStyle("-"),
+	InitialCase:    strings.ToUpper,
+	SubsequentCase: strings.ToUpper,
+	Example: "SCREAMING-KEBAB-CASE",
+}
+
+var HttpHeaderCase = CaseConvention{
+	JoinStyle:      SimpleJoinStyle("-"),
+	InitialCase:    strings.ToUpper,
+	SubsequentCase: ToStrictTitle,
+	Example: "HTTP-Header-Case",
+}
+
 
 var SpinalCase = KebabCase // Hate this name, but some people use it.
 var TrainCase = UpperKebabCase // Ditto.
 
 var UpperCamelCase = CaseConvention{
 	JoinStyle:      camelJoinStyle,
+	InitialCase:    ToStrictTitle,
+	SubsequentCase: ToStrictTitle,
+	Example: "UpperCamelCase",
+}
+
+var LowerCamelCase = CaseConvention{
+	JoinStyle:      camelJoinStyle,
+	InitialCase:    strings.ToLower,
+	SubsequentCase: ToStrictTitle,
+	Example: "lowerCamelCase",
+}
+
+var UpperCamelCaseKeepCaps = CaseConvention{
+	JoinStyle:      camelJoinStyle,
 	InitialCase:    strings.Title,
 	SubsequentCase: strings.Title,
 	Example: "UpperCamelCase",
 }
 
-var LowerCamelCase = CaseConvention{
+var LowerCamelCaseKeepCaps = CaseConvention{
 	JoinStyle:      camelJoinStyle,
 	InitialCase:    strings.ToLower,
 	SubsequentCase: strings.Title,

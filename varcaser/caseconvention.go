@@ -86,3 +86,7 @@ var camelJoinStyle = JoinStyle{
 		return
 	},
 }
+
+func ToStrictTitle(s string) string {
+	return strings.Title(strings.ToLower(s))
+}
