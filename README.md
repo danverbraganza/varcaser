@@ -24,8 +24,9 @@ Usage Examples
 result := Caser{From: LowerCamelCase, To: KebabCase}.String("someInitMethod")
 // "some-init-method"
 
-result := Caser{From: LowerCamelCase, To: ScreamingSnakeCase}.String("myConstantVariable")
-// MY_CONSTANT_VARIABLE
+result := Caser{From: LowerCamelCase,
+       To: ScreamingSnakeCase}.String("myConstantVariable")
+// "MY_CONSTANT_VARIABLE"
 ```
 
 Available Case Conventions
@@ -33,13 +34,13 @@ Available Case Conventions
 
 All of the following are exported as CaseConvention structs.
 
-* **LowerSnakeCase**: lower_snake_case
-* **ScreamingSnakeCase**: SCREAMING_SNAKE_CASE
-* **KebabCase**: kebab-case  (also exported as **SpinalCase**)
-* **UpperKebabCase**: Upper-Kebab-Case (also exported as **TrainCase**)
-* **ScreamingKebabCase**: SCREAMING-KEBAB-CASE
-* **HttpHeaderCase**: HTTP-Header-Case  (NB: Mishandles some conventional acronyms at the moment)
-* **UpperCamelCase**: UpperCamelCase  (renders HTTP as Http)
-* **LowerCamelCase**: lowerCamelCase  (renders HTTP as Http)
-* **UpperCamelCaseKeepCaps**: UpperCamelCaseKeepCaps (renders HTTP as HTTP)
-* **LowerCamelCaseKeepCaps**: lowerCamelCaseKeepCaps (renders HTTP as HTTP)
+* `LowerSnakeCase`: `lower_snake_case`
+* `ScreamingSnakeCase`: `SCREAMING_SNAKE_CASE`
+* `KebabCase`: `kebab-case`  (also exported as `SpinalCase`)
+* `UpperKebabCase`: `Upper-Kebab-Case` (also exported as `TrainCase`)
+* `ScreamingKebabCase`: `SCREAMING-KEBAB-CASE`
+* `HttpHeaderCase`: `HTTP-Header-Case`  (NB: Mishandles some conventional acronyms at the moment)
+* `UpperCamelCase`: `UpperCamelCase`  (renders HTTP as Http)
+* `LowerCamelCase`: `lowerCamelCase`  (renders HTTP as Http)
+* `UpperCamelCaseKeepCaps`: `UpperCamelCaseKeepCaps` (renders HTTP as HTTP)
+* `LowerCamelCaseKeepCaps`: `lowerCamelCaseKeepCaps` (renders HTTP as HTTP)
