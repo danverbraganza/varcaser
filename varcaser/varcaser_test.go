@@ -3,13 +3,14 @@ package varcaser
 import (
 	"reflect"
 	"testing"
+
+	"golang.org/x/text/transform"
 )
 
 func AssertEqual(specimen, expected interface{}, t *testing.T) {
 	if !reflect.DeepEqual(specimen, expected) {
 		t.Errorf("Wanted %v, got %v", expected, specimen)
 	}
-
 }
 
 func TestCamelSplit(t *testing.T) {
@@ -114,4 +115,16 @@ func TestCaserLowerCamelInitialCapital(t *testing.T) {
 	specimen := c.String("SomeInitMethod")
 	expected := "some-init-method" // NOT "-some-init-method"
 	AssertEqual(specimen, expected, t)
+}
+
+func TestCaserIsATransformer(t *testing.T) {
+	c := transform.Transformer(Caser{From: LowerCamelCase, To: KebabCase})
+	dst := make([]byte, 20)
+	src := [20]byte{}
+	copy(src[:], "oneMeasleyVariable")
+	nDst, nSrc, err := c.Transform(dst, src[:], false)
+	AssertEqual(nDst, 20, t)
+	AssertEqual(nSrc, 20, t)
+	AssertEqual(err, transform.ErrShortDst, t)
+	AssertEqual(string(dst), "one-measley-variable", t)
 }

@@ -28,21 +28,20 @@ func (c Caser) String(s string) string {
 
 // Bytes is provided for compatibility with the Transformer interface. Since
 // Caser has no special treatement of bytes, the bytes are converted to and from
-// strings. Warning: Untested.
-func (c Caser) Bytes(b []byte) (result []byte) {
-	copy(result, c.String(string(b)))
-	return
+// strings.
+func (c Caser) Bytes(b []byte) []byte {
+	return []byte(c.String(string(b)))
 }
 
 // Provided for compatibility with the Transformer interface. Since Caser has no
 // special treatement of bytes, the bytes are converted to and from strings.
-// Warning: Untested.
+// Will treat the entirity of src as ONE variable name.
 func (c Caser) Transform(dst, src []byte, atEOF bool) (nDst, nSrc int, err error) {
 	nSrc = len(src) // Always read all the bytes of src
 	result := c.Bytes(src)
-	if len(result) > cap(dst) {
+	if len(result) > len(dst) {
 		err = transform.ErrShortDst
 	}
-	nDst = copy(dst, src)
+	nDst = copy(dst, result)
 	return
 }
