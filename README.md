@@ -36,6 +36,7 @@ All of the following are exported as CaseConvention structs.
 
 * `LowerSnakeCase`: `lower_snake_case`
 * `ScreamingSnakeCase`: `SCREAMING_SNAKE_CASE`
+* `KebabCase`: `kebab-case`
 * `ScreamingKebabCase`: `SCREAMING-KEBAB-CASE`
 * `HttpHeaderCase`: `HTTP-Header-Case`  (NB: Mishandles some conventional acronyms at the moment)
 * `UpperCamelCase`: `UpperCamelCase`  (renders HTTP as Http)
