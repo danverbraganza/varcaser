@@ -46,8 +46,8 @@ var ScreamingKebabCase = CaseConvention{
 
 var HttpHeaderCase = CaseConvention{
 	JoinStyle:      SimpleJoinStyle("-"),
-	InitialCase:    strings.ToUpper,
-	SubsequentCase: ToStrictTitle,
+	InitialCase:    ToHttpTitle,
+	SubsequentCase: ToHttpTitle,
 	Example:        "HTTP-Header-Case",
 }
 

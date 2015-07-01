@@ -97,3 +97,26 @@ var camelJoinStyle = JoinStyle{
 func ToStrictTitle(s string) string {
 	return strings.Title(strings.ToLower(s))
 }
+
+var HttpAcronyms = map[string]bool{
+	"XSS":  true,
+	"SSL":  true,
+	"HTTP": true,
+	"MD5":  true,
+	"TE":   true,
+	"DNT":  true,
+	"UIDH": true,
+	"P3P":  true,
+	"WWW":  true,
+	"CSP":  true,
+	"UA":  true,
+}
+
+// ToHttpTitle returns a string titled the way HTTP Headers title it.
+func ToHttpTitle(s string) string {
+	upper := strings.ToUpper(s)
+	if _, ok := HttpAcronyms[upper]; ok {
+		return upper
+	}
+	return ToStrictTitle(s)
+}

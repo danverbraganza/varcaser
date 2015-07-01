@@ -107,6 +107,15 @@ func TestCaserCamelToCamelKeepCapitals(t *testing.T) {
 	AssertEqual(specimen, expected, t)
 }
 
+// AsyncHTTPRequest -> AsyncHttpRequest
+func TestCaserCamelToHttpCase(t *testing.T) {
+	c := Caser{From: UpperCamelCase, To: HttpHeaderCase}
+
+	specimen := c.String("AcceptEncoding")
+	expected := "Accept-Encoding"
+	AssertEqual(specimen, expected, t)
+}
+
 func TestCaserLowerCamelInitialCapital(t *testing.T) {
 	// This is another tricky case. I decided that the initial Capital does
 	// NOT indicate a hidden initial separator, but that might change.
