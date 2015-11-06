@@ -98,6 +98,8 @@ func ToStrictTitle(s string) string {
 	return strings.Title(strings.ToLower(s))
 }
 
+// HttpAcronyms is effectively a set of acronyms that are conventionally
+// uppercased in the HTTP Casing Convention.
 var HttpAcronyms = map[string]bool{
 	"XSS":  true,
 	"SSL":  true,
@@ -109,7 +111,7 @@ var HttpAcronyms = map[string]bool{
 	"P3P":  true,
 	"WWW":  true,
 	"CSP":  true,
-	"UA":  true,
+	"UA":   true,
 }
 
 // ToHttpTitle returns a string titled the way HTTP Headers title it.
