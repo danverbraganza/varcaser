@@ -7,12 +7,14 @@ import (
 	"unicode"
 )
 
+type WordCase func(string) string
+
 // A CaseConvention is a way of writing variable names using separators and
 // casing style.
 type CaseConvention struct {
 	JoinStyle
-	SubsequentCase func(string) string
-	InitialCase    func(string) string
+	SubsequentCase WordCase
+	InitialCase    WordCase
 	Example        string // Render the name of this case convention in itself
 }
 
