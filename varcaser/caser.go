@@ -7,16 +7,22 @@ import (
 // type Caser is a text transformer that takes converts a variable from one
 // casing convention to another.
 type Caser struct {
-	From CaseConvention
+	From Splitter
 	To   CaseConvention
 	transform.NopResetter
+}
+
+// Splitter is an interface for a type that can decompose a variable name into
+// its component words.
+type Splitter interface {
+	SplitWords(string) []string
 }
 
 // String returns the representation of a variable name in this Caser's To
 // CaseConvention given a variable name in this Caser's From CaseConvention.
 func (c Caser) String(s string) string {
 	components := []string{}
-	for i, s := range c.From.Split(s) {
+	for i, s := range c.From.SplitWords(s) {
 		if i == 0 {
 			components = append(components, c.To.InitialCase(s))
 		} else {

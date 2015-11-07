@@ -94,6 +94,11 @@ var camelJoinStyle = JoinStyle{
 	},
 }
 
+// SplitWords allows CaseConvention to implement Splitter.
+func (c CaseConvention) SplitWords(s string) []string {
+	return c.Split(s)
+}
+
 // ToStrictTitle returns the strict titling of a string without preserving
 // existing caps in acronyms.
 func ToStrictTitle(s string) string {
