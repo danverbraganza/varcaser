@@ -7,10 +7,9 @@ conventions.
 The varcaser transformation function `Caser.String(string)` is designed around
 the assumption that the caller is aware of the casing convention of the input
 variable names. If this is not the case, the caller can use the
-`Detect([]string)` function on the input variable strings to retrieve the source
-`CaseConvention` object, if that is possible. At present, this detection is
-pretty naive, and will fail if all of the variables passed in are not all
-formatted according to the same `CasingConvention`.
+`Detect([]string)` function on the input variable strings to retrieve a
+`Splitter` object, if that is possible. This `Splitter` object takes care of
+decomposing an input variable name into its component parts.
 
 Varcaser is implemented without regular expressions (for now).
 
@@ -59,6 +58,13 @@ All of the following are exported as CaseConvention structs.
 
 Updates
 -------
+
+**2015-11-07**
+
+Changed how the detector module works. Instead of returning a CaseConvention
+object, it returns a Splitter, which simplifies the logic significantly, with
+only a small sacrifice in functionality.
+
 
 **2015-11-05**
 
