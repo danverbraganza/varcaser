@@ -1,8 +1,11 @@
 Varcaser
 ========
 
-A library for converting variables between different programming language casing
-conventions.
+Varcaser is a library for converting variables between different programming
+language casing conventions.
+
+Varcaser is now stable. Although bugs that are discovered will be fixed, there
+is no plan to add more features to Varcaser.
 
 The varcaser transformation function `Caser.String(string)` is designed around
 the assumption that the caller is aware of the casing convention of the input
@@ -11,7 +14,8 @@ variable names. If this is not the case, the caller can use the
 `Splitter` object, if that is possible. This `Splitter` object takes care of
 decomposing an input variable name into its component parts.
 
-Varcaser is implemented without regular expressions (for now).
+The case transformation component of Varcaser is implemented without regular
+expressions.
 
 Varcaser handles cases such as rendering "AsyncHTTPRequest" in lower_snake_case
 as "async_http_request". In {Upper, Lower}CamelCase, that same variable will be
@@ -55,6 +59,8 @@ All of the following are exported as CaseConvention structs.
 * `UpperCamelCaseKeepCaps`: `UpperCamelCaseKeepCaps` (renders HTTP as HTTP)
 * `LowerCamelCaseKeepCaps`: `lowerCamelCaseKeepCaps` (renders HTTP as HTTP)
 
+In addition, it is easy to build a custom CaseConvention your own use, if you
+need one that isn't provided here.
 
 Updates
 -------
