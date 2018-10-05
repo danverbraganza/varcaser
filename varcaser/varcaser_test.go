@@ -43,7 +43,7 @@ func TestCaserSimple(t *testing.T) {
 func TestCaserLeadingUnderscoreToCamel(t *testing.T) {
 	// This was a tricky case. I expected that _private_method would convert
 	// to _PrivateMethod, but to get that behaviour complicates the
-	// conversion functions (or priviliges _ as a conversion), and it seems
+	// conversion functions (or privileges _ as a conversion), and it seems
 	// that
 	// http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-135099.html#367
 	// doesn't approve of leading underscores in that case anyway.
