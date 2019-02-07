@@ -39,7 +39,7 @@ func SimpleJoinStyle(sep string) JoinStyle {
 }
 
 // JoinStyle used in CamelCase. Special casing the Split function to keep
-// acronynms together.
+// acronyms together.
 var camelJoinStyle = JoinStyle{
 	Join: func(components []string) string {
 		return strings.Join(components, "")
